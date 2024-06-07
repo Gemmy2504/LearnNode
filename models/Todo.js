@@ -1,15 +1,14 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const Todo = new mongoose.Schema(
-  {
-    task: {
-      type: String,
-      required: true,
-      trim: true,
-      maxlength: 30,
-    },
+const { Schema } = mongoose;
+
+const taskSchema = new Schema({
+  task: {
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 30,
   },
-  { timestamps: true }
-);
+});
 
-module.exports = mongoose.model("Todo", Todo);
+export const Todo = mongoose.model("Todo", taskSchema);

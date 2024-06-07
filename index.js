@@ -1,12 +1,12 @@
 // import all the necessary packages
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 const port = 8000;
 // we will create these todoRoutes in the future
-const todoRoutes = require("./routes/Todo");
+import todoRoutes from "./routes/Todo.js";
 const app = express();
 
 // DB connection
@@ -14,7 +14,7 @@ mongoose
   .connect("mongodb://127.0.0.1:27017/todoapp", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    
   })
   .then(() => {
     console.log("CONNECTED TO DATABASE");
@@ -23,7 +23,7 @@ mongoose
 // middleware for cors to allow cross origin resource sharing
 app.use(cors());
 // middleware to convert our request data into JSON format
-app.use(bodyParser.json());
+app.use(express.json());
 
 // include the todoRoutes
 app.use("/api", todoRoutes);

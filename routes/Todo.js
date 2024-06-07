@@ -1,16 +1,9 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // these are the controllers
 // we will create all of them in the future
-const {
-  createTodo,
-  getTodoById,
-  getTodo,
-  deleteTodo,
-  getAllTodos,
-  updateTodo,
-} = require("../controllers/Todo");
+import { getTodoById, getAllTodos } from "../controllers/Todo.js";
 
 //params
 // it will fetch the value from the url
@@ -20,16 +13,16 @@ router.param("todoId", getTodoById);
 router.get("/todos/", getAllTodos);
 
 // to get a single todo
-router.get("/todo/:todoId/", getTodo);
+//router.get("/todo/:todoId/", getTodo);
 
 // to create a todo
-router.post("/todo/create/", createTodo);
+//router.post("/todo/create/", createTodo);
 
 // to update the todo
-router.put("/todo/:todoId/update", updateTodo);
+//router.put("/todo/:todoId/update", updateTodo);
 
 // to delete the todo
-router.delete("/todo/:todoId/delete", deleteTodo);
+//router.delete("/todo/:todoId/delete", deleteTodo);
 
 // we will export the router to import it in the index.js
-module.exports = router;
+export default router;

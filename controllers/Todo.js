@@ -1,6 +1,6 @@
-const Todo = require("../models/Todo");
+import {Todo} from "../models/Todo.js";
 
-exports.getTodoById = (req, res, next, todoId) => {
+export const getTodoById = (req, res, next, todoId) => {
   // todoId is coming from the router.param
   // .findById() method will find the todo which has id==todoId
   Todo.findById(todoId).exec((err, todo) => {
@@ -16,18 +16,8 @@ exports.getTodoById = (req, res, next, todoId) => {
     next();
   });
 };
-exports.getAllTodos = (req, res) => {
+export const getAllTodos = async (req, res) => {
   // simply use .find() method and it will return all the todos
-  Todo.find()
-    .sort("-createdAt")
-    .exec((err, todos) => {
-      // error checking
-      if (err || !todos) {
-        return res.status(400).json({
-          error: "Something went wrong in finding all todos",
-        });
-      }
-      // return all the todos in json format
-      res.json(todos);
-    });
+  const tasks = await Todo.find();
+  res.json({ tasks });
 };
