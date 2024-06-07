@@ -7,7 +7,6 @@ const taskSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-    maxlength: 30,
   },
 });
 
